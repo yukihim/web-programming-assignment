@@ -1,0 +1,9 @@
+### [Color palette inspired by this link](https://www.color-hex.com/color-palette/1052678)
+
+### Techstack
+Bootstrap5, MySQL
+
+### How to deploy
+1 Open XAMPP
+1.1 Open [phpmyadmin page](http://localhost/phpmyadmin)
+1.2 Import init.sql
