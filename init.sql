@@ -26,4 +26,3 @@ INSERT INTO users (username, password, role) VALUES
 ('admin', 'ad123', 'admin'),
 ('staff', 'sta123', 'staff'),
 ('doctor', 'doc123', 'doctor'),
-('patient', 'pat123', 'patient');

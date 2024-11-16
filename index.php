@@ -12,36 +12,57 @@
     <div style="min-width:auto;">
         <?php 
             $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+            $isSignedIn = isset($_GET['isSignedIn']) ? $_GET['isSignedIn'] : false;
             $user = isset($_GET['user']) ? $_GET['user'] : null;
         ?>
 
         <!-- Header -->
         <?php include 'components/header.php'; ?>
 
-        <!-- Navigation bar -->
-        <!-- 
-            This navigation bar displays only home, login, it will start showing other tabs when user is logged in and will display by what that user has access to
-        -->
-        <nav>
-            <ul class="nav nav-tabs nav-justified">
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $page == 'home' ? 'active' : ''; ?>" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $page == 'login' ? 'active' : ''; ?>" href="index.php?page=signin">Login</a>
-                </li>
-            </ul>
-        </nav>
-
-
-        <!-- Controller -->
+        <!-- Controller: Body (Content) -->
         <!-- 
             Following the MVC Principles
         -->
-        <div>
+        <div class="mx-5 mt-3 flex-grow-1">
             <?php
                 switch ($page) {
                     case 'home':
+                        // include 'index.php';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
+                        echo '<p>Welcome to the home page!</p>';
                         echo '<p>Welcome to the home page!</p>';
                         break;
                     case 'signin':
@@ -50,23 +71,54 @@
                         break;
                     case 'admin':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                        
+                        if ($isSignedIn) {
+                            include 'pages/admin.php';
+                        } else {
+                            // Allert: "You have to log in first"
+                            echo    "<script>
+                                        alert('You have to log in first');
+                                        window.location.href = 'index.php?page=signin&isSignedIn=false';
+                                    </script>";
+                            include 'signin.php';
+                        }
                         break;
                     case 'staff':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                        
+                        if ($isSignedIn) {
+                            include 'pages/staff.php';
+                        } else {
+                            echo    "<script>
+                                        alert('You have to log in first');
+                                        window.location.href = 'index.php?page=signin&isSignedIn=false';
+                                    </script>";
+                            include 'signin.php';
+                        }
                         break;
                     case 'doctor':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                        
+                        if ($isSignedIn) {
+                            include 'pages/doctor.php';
+                        } else {
+                            // Allert: "You have to log in first"
+                            echo    "<script>
+                                        alert('You have to log in first');
+                                        window.location.href = 'index.php?page=signin&isSignedIn=false';
+                                    </script>";
+                            include 'signin.php';
+                        }
                         break;
-                    case 'patient':
+                    case 'guest':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                        
+                        include 'pages/patient.php';
                         break;
                     default:
+                        // Allert: "You have to log in first"
+                        echo    "<script>
+                                    alert('404 Page Not Found');
+                                    window.location.href = 'index.php';
+                                </script>";
                         // Redirect to Homepage
-                        echo '<p>Welcome to the home page!</p>';
+                        // include 'index.php';
                         break;
                 }
             ?>

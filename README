@@ -3,7 +3,9 @@
 ### Techstack
 Bootstrap5, MySQL
 
-### How to deploy
+### How to run
 1 Open XAMPP
-1.1 Open [phpmyadmin page](http://localhost/phpmyadmin)
-1.2 Import init.sql
+2 Start Apache Server and MySQL
+3 Open [phpmyadmin Page](http://localhost/phpmyadmin)
+4 Import init.sql
+5 Open [Medical Appoinment Page](http://localhost/web-programming-assignment/index.php)
