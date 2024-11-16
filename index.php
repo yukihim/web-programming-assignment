@@ -9,50 +9,71 @@
     <!-- <link rel="stylesheet" href="assets/styles/styles.css"> -->
 </head>
 <body>
-    <!-- Add header -->
-    <?php include 'components/header.php'; ?>
+    <div style="min-width:auto;">
+        <?php 
+            $page = isset($_GET['page']) ? $_GET['page'] : 'home';
+            $user = isset($_GET['user']) ? $_GET['user'] : null;
+        ?>
 
-    <!-- View Controller -->
-    <?php
-        // Check if page is set or else set it to home
-        if (isset($_GET['page'])) {
-            $page = $_GET['page'];
-        } else {
-            $page = 'home';
-        }
+        <!-- Header -->
+        <?php include 'components/header.php'; ?>
 
-        switch ($page) {
-            case 'home':
-                echo '<p>Welcome to the home page!</p>';
-                break;
-            case 'signin':
-                // TODO: Implement sign in page
+        <!-- Navigation bar -->
+        <!-- 
+            This navigation bar displays only home, login, it will start showing other tabs when user is logged in and will display by what that user has access to
+        -->
+        <nav>
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $page == 'home' ? 'active' : ''; ?>" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo $page == 'login' ? 'active' : ''; ?>" href="index.php?page=signin">Login</a>
+                </li>
+            </ul>
+        </nav>
 
-                break;
-            case 'admin':
-                // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                
-                break;
-            case 'staff':
-                // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                
-                break;
-            case 'doctor':
-                // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                
-                break;
-            case 'patient':
-                // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                
-                break;
-            default:
-                // Redirect to Homepage
-                echo '<p>Welcome to the home page!</p>';
-                break;
-        }
-    ?>
 
-    <!-- Add footer -->
-    <?php include 'components/footer.php'; ?>
+        <!-- Controller -->
+        <!-- 
+            Following the MVC Principles
+        -->
+        <div>
+            <?php
+                switch ($page) {
+                    case 'home':
+                        echo '<p>Welcome to the home page!</p>';
+                        break;
+                    case 'signin':
+                        // TODO: Implement sign in page
+                        include 'signin.php';
+                        break;
+                    case 'admin':
+                        // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
+                        
+                        break;
+                    case 'staff':
+                        // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
+                        
+                        break;
+                    case 'doctor':
+                        // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
+                        
+                        break;
+                    case 'patient':
+                        // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
+                        
+                        break;
+                    default:
+                        // Redirect to Homepage
+                        echo '<p>Welcome to the home page!</p>';
+                        break;
+                }
+            ?>
+        </div>
+
+        <!-- Footer -->
+        <?php include 'components/footer.php'; ?>
+    </div>
 </body>
 </html>
