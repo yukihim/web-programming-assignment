@@ -8,7 +8,7 @@
 ?>
 
 <form action="components/login_processing.php" method="POST" class="d-flex justify-content-center pt-5">
-    <div class="w-25 p-5 border" style="border-radius: 20; min-width: 400px;">
+    <div class="w-25 p-5 border shadow-lg" style="border-radius: 20; min-width: 400px;">
         <h2>Login</h2>
         <?php if ($message): ?>
             <div class="alert alert-danger" role="alert">
