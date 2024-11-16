@@ -28,42 +28,12 @@
                 switch ($page) {
                     case 'home':
                         // include 'index.php';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
-                        echo '<p>Welcome to the home page!</p>';
+                        echo   '<h1>
+                                    Hello!
+                                </h1><hr>';
+                        echo    '<p>
+                                    This is the homepage for medical appointment with doctor!
+                                </p>';
                         break;
                     case 'signin':
                         // TODO: Implement sign in page
