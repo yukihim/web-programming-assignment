@@ -1,4 +1,4 @@
-### [Color palette inspired by this link](https://www.color-hex.com/color-palette/1052678)
+### Color palette inspired by [this](https://www.color-hex.com/color-palette/1052678)
 
 ### Techstack
 Bootstrap5, MySQL
