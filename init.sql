@@ -25,4 +25,4 @@ CREATE TABLE users (
 INSERT INTO users (username, password, role) VALUES
 ('admin', 'ad123', 'admin'),
 ('staff', 'sta123', 'staff'),
-('doctor', 'doc123', 'doctor'),
+('doctor', 'doc123', 'doctor')
