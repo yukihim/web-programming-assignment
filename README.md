@@ -1,14 +1,13 @@
-### Color palette inspired by [this](https://www.color-hex.com/color-palette/1052678)
+### I. Color palette inspired by [this](https://www.color-hex.com/color-palette/1052678)
 
-### Techstack
+### II. Techstack
 - Bootstrap5
 - MySQL
 
-### [Slide]()
-
-### How to run
+### III. How to run
 1. Open XAMPP
 2. Start Apache Server and MySQL
-3. Open [phpmyadmin Page](http://localhost/phpmyadmin)
-4. Import init.sql
-5. Open [Medical Appoinment Page](http://localhost/web-programming-assignment/index.php)
+3. Put the repo inside htdocs folder in xampp
+4. Open [phpmyadmin Page](http://localhost/phpmyadmin)
+5. Import init.sql
+6. Open [Medical Appoinment Page](http://localhost/web-programming-assignment/index.php)
