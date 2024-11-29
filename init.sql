@@ -24,5 +24,10 @@ CREATE TABLE users (
 -- Insert mock data
 INSERT INTO users (username, password, role) VALUES
 ('staff', 'sta123', 'staff'),
-('doctor', 'doc123', 'doctor')
+('doctor', 'doc123', 'doctor'),
 ('patient', 'pat123', 'patient');
+
+
+-- Create a new MySQL user and grant specific privileges
+CREATE USER 'mySQL_Admin'@'%' IDENTIFIED BY 'newpassword';
+GRANT INSERT, UPDATE, DELETE, SELECT ON medical_appointment.* TO 'mySQL_Admin'@'%';
