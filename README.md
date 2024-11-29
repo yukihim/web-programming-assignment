@@ -1,5 +1,4 @@
-### I. Color palette inspired by [this](https://www.color-hex.com/color-palette/1052678)
-### I. Color palette inspired by [this v2](https://www.color-hex.com/color-palette/47605)
+### I. Color palette inspired by [this](https://coolors.co/palette/7400b8-6930c3-5e60ce-5390d9-4ea8de-48bfe3-56cfe1-64dfdf-72efdd-80ffdb)
 
 ### II. Techstack
 - Bootstrap5
