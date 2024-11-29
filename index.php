@@ -23,7 +23,7 @@
         <!-- 
             Following the MVC Principles
         -->
-        <div class="mx-5 mt-3 flex-grow-1">
+        <div class="mx-5 mt-3 flex-grow-1" style="margin-bottom: 5em;">
             <?php
                 switch ($page) {
                     case 'home':
