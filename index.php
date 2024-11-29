@@ -39,19 +39,19 @@
                         // TODO: Implement sign in page
                         include 'signin.php';
                         break;
-                    case 'admin':
-                        // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                        if ($isSignedIn) {
-                            include 'pages/admin.php';
-                        } else {
-                            // Allert: "You have to log in first"
-                            echo    "<script>
-                                        alert('You have to log in first');
-                                        window.location.href = 'index.php?page=signin&isSignedIn=false';
-                                    </script>";
-                            include 'signin.php';
-                        }
-                        break;
+                    // case 'admin':
+                    //     // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
+                    //     if ($isSignedIn) {
+                    //         include 'pages/admin.php';
+                    //     } else {
+                    //         // Allert: "You have to log in first"
+                    //         echo    "<script>
+                    //                     alert('You have to log in first');
+                    //                     window.location.href = 'index.php?page=signin&isSignedIn=false';
+                    //                 </script>";
+                    //         include 'signin.php';
+                    //     }
+                    //     break;
                     case 'staff':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
                         if ($isSignedIn) {
