@@ -7,7 +7,7 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'staff', 'doctor', 'patient') NOT NULL
+    role ENUM('staff', 'doctor', 'patient') NOT NULL
 );
 
 -- Appointments table
@@ -23,6 +23,11 @@ CREATE TABLE users (
 
 -- Insert mock data
 INSERT INTO users (username, password, role) VALUES
-('admin', 'ad123', 'admin'),
 ('staff', 'sta123', 'staff'),
-('doctor', 'doc123', 'doctor')
+('doctor', 'doc123', 'doctor'),
+('patient', 'pat123', 'patient');
+
+
+-- Create a new MySQL user and grant specific privileges
+CREATE USER 'mySQL_Admin'@'%' IDENTIFIED BY 'newpassword';
+GRANT INSERT, UPDATE, DELETE, SELECT ON medical_appointment.* TO 'mySQL_Admin'@'%';
