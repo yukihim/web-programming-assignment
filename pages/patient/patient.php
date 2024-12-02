@@ -27,6 +27,55 @@ $officesQuery = "SELECT * FROM doctor_offices";
 $officesResult = $conn->query($officesQuery);
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+        .form-select {
+            border-radius: 8px;
+        }
+        .mb-3 {
+            margin-bottom: 20px;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
 <div class="container mt-5">
     
     <h2>Book an Appointment</h2>
@@ -44,25 +93,11 @@ $officesResult = $conn->query($officesQuery);
 
         <!-- Select Time Slot -->
         <div class="mb-3">
-            <label for="time_slot" class="form-label">Available Time Slot</label>
-            <select id="time_slot" name="time_slot" class="form-select" required>
+            <label for="available_time" class="form-label">Available Time Slot</label>
+            <select id="available_time" name="time_slot" class="form-select" required>
                 <option value="" disabled selected>Select a time slot</option>
                 <!-- Time slots will be loaded dynamically via JavaScript -->
             </select>
-        </div>
-
-        <!-- Personal Information -->
-        <div class="mb-3">
-            <label for="full_name" class="form-label">Full Name</label>
-            <input type="text" id="full_name" name="full_name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
-            <input type="text" id="phone" name="phone" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email (Optional)</label>
-            <input type="email" id="email" name="email" class="form-control">
         </div>
 
         <!-- Submit Button -->
@@ -70,23 +105,30 @@ $officesResult = $conn->query($officesQuery);
     </form>
 </div>
 
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
 <script>
     // Load available time slots dynamically based on selected doctor office
     console.log(`Logged-in User ID: ${userid}`);
     document.getElementById('doctor_office').addEventListener('change', function() {
         const officeId = this.value;
-        // echo officeId;
+        console.log(`Selected Doctor Office ID: ${officeId}`);
         fetch(`pages/patient/get_time_slots.php?office_id=${officeId}`)
             .then(response => response.json())
             .then(data => {
-                const timeSlotSelect = document.getElementById('time_slot');
+                const timeSlotSelect = document.getElementById('available_time');
                 timeSlotSelect.innerHTML = '<option value="" disabled selected>Select a time slot</option>';
                 data.forEach(slot => {
                     const option = document.createElement('option');
                     option.value = slot.id;
-                    option.textContent = slot.time;
+                    option.textContent = slot.available_time;
                     timeSlotSelect.appendChild(option);
                 });
             });
     });
 </script>
+
+</body>
+</html>

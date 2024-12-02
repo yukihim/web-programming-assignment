@@ -14,10 +14,14 @@ if (!isset($_SESSION['userid']) || $_SESSION['role'] !== 'patient') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doctorOffice = $_POST['doctor_office'];
     $timeSlot = $_POST['time_slot'];
+    $statuss = 'pending';
     $fullName = $_POST['full_name'];
     $phone = $_POST['phone'];
     $email = isset($_POST['email']) ? $_POST['email'] : null;
     $patientId = $_SESSION['userid']; // Get the logged-in patient's ID
+
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $time_right_now = date('Y-m-d H:i:s'); // Get current date and time
 
     $host = "localhost";
     $username = "root";
@@ -31,9 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Insert appointment into the database
-        $stmt = $conn->prepare("INSERT INTO appointments (doctor_office_id, time_slot_id, patient_id, full_name, phone, email) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiisss", $doctorOffice, $timeSlot, $patientId, $fullName, $phone, $email); // Bind parameters including patient_id
-
+        $stmt = $conn->prepare("INSERT INTO appointments (patient_id, doctor_office_id, time_slot_id, status, created_at) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("iiiss", $patientId, $doctorOffice, $timeSlot, $statuss, $time_right_now);
         if ($stmt->execute()) {
             // Redirect with success message
             header("Location: http://localhost/web-programming-assignment/index.php?page=guest&isSignedIn=true&user=guest&message=Appointment+Booked");

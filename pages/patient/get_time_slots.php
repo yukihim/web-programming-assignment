@@ -18,7 +18,7 @@ $timeSlots = [];
 while ($slot = $slotsResult->fetch_assoc()) {
     $timeSlots[] = [
         'id' => $slot['id'],
-        'time' => $slot['time']
+        'available_time' => $slot['available_time']
     ];
 }
 
