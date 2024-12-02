@@ -8,6 +8,10 @@
         $isSignedIn = false;
         $user = null;
     }
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 ?>
 
 <header class="d-flex flex-column align-items-end" style="background-color: #5390d9; color: #001233; top: 0; width: 100%;">
