@@ -79,7 +79,7 @@
                         break;
                     case 'guest':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
-                        include 'pages/patient.php';
+                        include 'pages/patient/patient.php';                   
                         break;
                     default:
                         // Allert: "You have to log in first"

@@ -1,4 +1,5 @@
 <?php
+    session_start(); // Start the session to store session variables
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $usernameweb = $_POST['username'];
         $passwordweb = $_POST['password'];
@@ -27,6 +28,8 @@
         $result = $conn->query($sql);
         if ($result && $result->num_rows > 0) {
             $user = $result->fetch_assoc();
+            $_SESSION['userid'] = $user['id']; // Store user ID in session
+            $_SESSION['role'] = $user['role']; // Store role in session
 
             echo "<console class='log'>User is " . $user['role'] . "</console>";
 
