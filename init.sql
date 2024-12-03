@@ -123,4 +123,4 @@ INSERT INTO appointments (patient_id, doctor_office_id, time_slot_id, status) VA
 -- Tạo một user MySQL mới và cấp quyền
 DROP USER IF EXISTS 'mySQL_Admin'@'%';
 CREATE USER 'mySQL_Admin'@'%' IDENTIFIED BY 'newpassword';
-GRANT INSERT, UPDATE, DELETE, SELECT ON medical_appointment_2.* TO 'mySQL_Admin'@'%';
+GRANT INSERT, UPDATE, DELETE, SELECT ON medical_appointment.* TO 'mySQL_Admin'@'%';
