@@ -1,19 +1,29 @@
 <?php
 class Database {
-    private static $host = "localhost";
-    private static $username = "root";
-    private static $password = "";
-    private static $dbname = "medical_appointment";
-    private static $connection = null;
+    private static $instance = null;
+    private $conn;
 
-    public static function getConnection() {
-        if (self::$connection === null) {
-            self::$connection = new mysqli(self::$host, self::$username, self::$password, self::$dbname);
-            if (self::$connection->connect_error) {
-                die("Database connection failed: " . self::$connection->connect_error);
-            }
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "medical_appointment";
+
+    private function __construct() {
+        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->dbname);
+        if ($this->conn->connect_error) {
+            die("Database connection failed: " . $this->conn->connect_error);
         }
-        return self::$connection;
+    }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection() {
+        return $this->conn;
     }
 }
 ?>
