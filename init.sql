@@ -1,8 +1,8 @@
 -- Tạo cơ sở dữ liệu medical_appointment
-CREATE DATABASE IF NOT EXISTS medical_appointment_2;
+CREATE DATABASE IF NOT EXISTS medical_appointment;
 
 -- Sử dụng cơ sở dữ liệu medical_appointment
-USE medical_appointment_2;
+USE medical_appointment;
 
 -- Bảng users (người dùng)
 DROP TABLE IF EXISTS users;

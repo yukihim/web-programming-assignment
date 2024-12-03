@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 class Database {
     private $host = 'localhost';
-    private $dbname = 'medical_appointment_2';
+    private $dbname = 'medical_appointment';
     private $username = 'root';
     private $password = '';
     private $conn;
