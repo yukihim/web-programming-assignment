@@ -3,6 +3,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// if isSigned = false, then unset the session
+if (isset($_GET['isSignedIn']) && $_GET['isSignedIn'] == 'false') {
+    session_unset();
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +43,15 @@ if (session_status() === PHP_SESSION_NONE) {
                 switch ($page) {
                     case 'home':
                         // include 'index.php';
-                        echo   '<h1>
-                                    Hello!
-                                </h1><hr>';
-                        echo    '<p>
-                                    This is the homepage for medical appointment with doctor!
-                                </p>';
+                        // echo   '<h1>
+                        //             Hello!
+                        //         </h1><hr>';
+                        // echo    '<p>
+                        //             This is the homepage for medical appointment with doctor!
+                        //         </p>';
+                        // break;
+
+                        include 'pages/home/home.php';
                         break;
                     case 'signin':
                         // TODO: Implement sign in page
