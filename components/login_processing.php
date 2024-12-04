@@ -7,7 +7,7 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "medical_appointment_2";
+    $dbname = "medical_appointment";
     $conn = null;
 
     try {

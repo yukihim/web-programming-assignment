@@ -12,7 +12,11 @@
         <h2>Login</h2>
         <?php if ($message): ?>
             <div class="alert alert-danger" role="alert">
-                <?php echo $message; ?>
+                <?php 
+                    if ($message == "wrong_username_or_password") {
+                        echo "Wrong username or password!";
+                    }
+                ?>
             </div>
         <?php endif; ?>
         <label for="username" class="form-label">Username</label><br>
