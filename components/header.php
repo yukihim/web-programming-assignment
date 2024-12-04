@@ -44,7 +44,7 @@
                     <li class="nav-item">
                         <a class="nav-link <?php echo $page == 'doctor' ? 'active' : ''; ?>" href="index.php?page=doctor&isSignedIn=true&user=doctor" style="<?php echo $page == 'doctor' ? '' : 'color:#001233'; ?>">Doctor</a>
                     </li>
-                <?php elseif ($user == 'guest'): ?>
+                <?php elseif ($user == 'guest' || $user == 'patient'): ?>
                     <li class="nav-item">
                         <a class="nav-link <?php echo $page == 'guest' ? 'active' : ''; ?>" href="index.php?page=guest&isSignedIn=true&user=guest" style="<?php echo $page == 'guest' ? '' : 'color:#001233'; ?>">Patient</a>
                     </li>
