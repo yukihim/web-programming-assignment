@@ -1,3 +1,10 @@
+<?php
+// Start the session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +13,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- <link rel="stylesheet" href="assets/styles/styles.css"> -->
+    <link rel="stylesheet" href="assets/styles/styles.css">
+
+    <!-- Load jQuery from CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
     <div style="min-width:auto;">
@@ -67,7 +77,7 @@
                     case 'doctor':
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
                         if ($isSignedIn) {
-                            include 'pages/doctor.php';
+                            include 'pages/doctor/doctor.php';
                         } else {
                             // Allert: "You have to log in first"
                             echo    "<script>

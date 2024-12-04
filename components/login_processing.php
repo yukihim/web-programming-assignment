@@ -31,16 +31,48 @@
             $_SESSION['userid'] = $user['id']; // Store user ID in session
             $_SESSION['role'] = $user['role']; // Store role in session
 
-            echo "<console class='log'>User is " . $user['role'] . "</console>";
+            // Kích hoạt session và lưu thông tin người dùng
+            session_start();
+            $_SESSION['isSignedIn'] = true;
+            $_SESSION['user'] = $user['role'];
+            $_SESSION['user_id'] = $user['id'];
 
-            // Redirect to home page
-            header("Location: http://localhost/web-programming-assignment/index.php?page=home&isSignedIn=true&user=" . urlencode($user['role']));
+            // Nếu là bác sĩ, lưu thêm thông tin `doctor_office_id` vào session
+            if ($user['role'] === 'doctor') {
+                $stmt = $conn->prepare("
+                    SELECT id AS doctor_office_id 
+                    FROM doctor_offices 
+                    WHERE doctor_id = ?
+                ");
+                $stmt->bind_param("i", $user['id']);
+                $stmt->execute();
+                $doctorOfficeResult = $stmt->get_result();
+
+                if ($doctorOfficeResult && $doctorOfficeResult->num_rows > 0) {
+                    $doctorOffice = $doctorOfficeResult->fetch_assoc();
+                    $_SESSION['doctor_office_id'] = $doctorOffice['doctor_office_id'];
+                } else {
+                    $_SESSION['doctor_office_id'] = null;
+                }
+            }
+
+            // nếu là bệnh nhân, lưu thêm thông tin `patient_id` vào session
+                //todo
+
+            // nếu là staff, lưu thêm thông tin `staff_id` vào session
+                //todo
+
+            // nếu là admin, lưu thêm thông tin `admin_id` vào session
+                //todo
+
+            header("Location: ../index.php?page=home&isSignedIn=true&user=" . urlencode($user['role']));
             exit();
         } else {
-            // Redirect to login page and send a message saying wrong username or password
-            header("Location: http://localhost/web-programming-assignment/index.php?page=signin&message=wrong_username_or_password");
+            // Sai tên đăng nhập hoặc mật khẩu
+            header("Location: ../index.php?page=signin&message=wrong_username_or_password");
             exit();
         }
+
     } catch (mysqli_sql_exception $e) {
         echo "->(Database) Error connecting: " . $e->getMessage();
     } finally {
