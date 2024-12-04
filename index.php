@@ -111,9 +111,9 @@ if (isset($_GET['isSignedIn']) && $_GET['isSignedIn'] == 'false') {
                 }
             ?>
         </div>
-
-        <!-- Footer -->
-        <?php include 'components/footer.php'; ?>
     </div>
+
+    <!-- Footer -->
+    <?php include 'components/footer.php'; ?>
 </body>
 </html>

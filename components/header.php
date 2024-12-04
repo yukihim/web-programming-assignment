@@ -50,7 +50,7 @@
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $page == 'logout' ? 'active' : ''; ?>" href="index.php?page=home&isSignedIn=false" style="<?php echo $page == 'logout' ? '' : 'color:#ef476f'; ?>">Logout</a>
+                    <a class="nav-link <?php echo $page == 'logout' ? 'active' : ''; ?>" href="index.php?page=home&isSignedIn=false" style="<?php echo $page == 'logout' ? '' : 'color:#001233'; ?>">Logout</a>
                 </li>
             <?php endif; ?>
         </ul>

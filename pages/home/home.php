@@ -72,39 +72,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <!-- Patient Registration Form -->
-    <div class="card shadow-sm rounded" style="margin: 20px auto;">
+    <div class="card shadow-sm rounded" style="max-width: 500px; margin: 20px auto;">
         <div class="card-body">
             <h2 class="card-title text-center">Patient Registration</h2>
-
+            
             <!-- Registration Form -->
             <form action="index.php?page=home&isSignedIn=true&user=guest" method="POST">
                 <div class="form-group">
-                    <label for="name">Patient Name</label>
+                    <label for="name" class="form-label">Patient Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number</label>
+                    <label for="phone" class="form-label">Phone Number</label>
                     <input type="text" class="form-control" id="phone" name="phone" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
 
                 <!-- Add Username field -->
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
 
                 <!-- Select Doctor's Office -->
                 <div class="form-group">
-                    <label for="doctor_office">Select Doctor's Office</label>
-                    <select class="form-control" id="doctor_office" name="doctor_office" required>
+                    <label for="doctor_office" class="form-label">Select Doctor's Office</label>
+                    <select class="form-select" id="doctor_office" name="doctor_office" required>
                         <option value="">Select office</option>
                         <?php while ($doctor_office = mysqli_fetch_assoc($doctor_offices)): ?>
                             <option value="<?= $doctor_office['id'] ?>"><?= $doctor_office['name'] ?></option>
@@ -114,8 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <!-- Select Time Slot -->
                 <div class="form-group" id="timeslot-container">
-                    <label for="timeslot">Select Time Slot</label>
-                    <select class="form-control" id="timeslot" name="timeslot" required>
+                    <label for="timeslot" class="form-label">Select Time Slot</label>
+                    <select class="form-select" id="timeslot" name="timeslot" required>
                         <option value="">Select time slot</option>
                     </select>
                 </div>
@@ -124,8 +124,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-</div>
-
-
 
 <script src="assets/js/scripts.js"></script>
