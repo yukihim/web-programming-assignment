@@ -1,18 +1,41 @@
-<!-- TODO: Implement staff page -->
+<?php
+// Start the session
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <h2>Appointments</h2>
 <div class="container-fluid w-100 row g-5">
     <?php 
+        // Kết nối đến cơ sở dữ liệu
         $mysql = mysqli_connect("localhost", "root", NULL, "medical_appointment", 3306, NULL);
         $query_result = NULL;
         try {
-            $query_result = mysqli_query($mysql, "SELECT doctor_office, patient_name, phone_number, email, appointment_time, status FROM appointments;");
+            // Truy vấn lấy thông tin lịch hẹn từ các bảng appointments, time_slots, và doctor_offices
+            $query_result = mysqli_query($mysql, "
+                SELECT 
+                    doctor_offices.name AS doctor_office,
+                    users.name AS patient_name,
+                    users.phone AS phone_number,
+                    users.email AS email,
+                    time_slots.available_time AS appointment_time,
+                    appointments.status 
+                FROM appointments
+                JOIN time_slots ON appointments.time_slot_id = time_slots.id
+                JOIN doctor_offices ON appointments.doctor_office_id = doctor_offices.id
+                JOIN users ON appointments.patient_id = users.id;
+            ");
         } catch (\Throwable $th) {
             echo "Error: $th";
             die;
         }
-        if ($query_result->num_rows){
+
+        // Kiểm tra và hiển thị thông tin các lịch hẹn
+        if ($query_result->num_rows) {
             $data = mysqli_fetch_all($query_result);
-            foreach($data as $appointment){
+            foreach ($data as $appointment) {
+                // Tính toán thời gian đã tạo lịch hẹn
                 $appointment_time = new DateTime($appointment[4]);
                 $now = new DateTime('now');
                 $created_when = $now->diff($appointment_time);
@@ -27,12 +50,13 @@
                 else if ($h) $display_when = "$h hours ago";
                 else if ($m) $display_when = "$m minutes ago";
                 else $display_when = "$s seconds ago";
+
+                // Xác định màu trạng thái
                 $status_color = "";
                 switch ($appointment[5]) {
                     case 'pending':
                         $status_color = "text-warning";
                         break;
-                    
                     case 'confirmed':
                         $status_color = "text-success";
                         break;
@@ -40,6 +64,8 @@
                         $status_color = "text-danger";
                         break;
                 }
+
+                // Hiển thị thông tin lịch hẹn
                 echo "<div class=\"card p-0 col-6 col-xl-3 col-lg-4\">
                         <div class=\"card-header fs-3 fw-semibold\">
                             $appointment[0]
@@ -67,12 +93,3 @@
         }
     ?>
 </div>
-
-<!-- 
-appointment:
-    doctor office
-    time slot
-    name
-    phone number
-    email
-  -->
