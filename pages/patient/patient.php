@@ -2,7 +2,10 @@
 require_once 'core/Database.php';
 require_once 'models/TimeSlot.php';
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 if (!isset($_SESSION['userid'])) {
     echo "<script>alert('You must log in as a guest to access this page.'); window.location.href = 'index.php?page=signin';</script>";
     exit();
