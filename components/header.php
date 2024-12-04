@@ -14,7 +14,7 @@
     }
 ?>
 
-<header class="d-flex flex-column align-items-end" style="background-color: #5390d9; color: #001233; top: 0; width: 100%;">
+<header class="d-flex flex-column align-items-end" style="background-color: #5390d9; color: white; top: 0; width: 100%;">
     <div class="d-flex justify-content-between w-100 p-3">
         <h1>Medical Appointment App</h1>
     </div>
