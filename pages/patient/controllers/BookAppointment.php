@@ -1,27 +1,21 @@
 <?php
 session_start();
 
-// Check if the user is logged in as a patient
+header('Content-Type: application/json'); // Ensure the response is JSON
+
 if (!isset($_SESSION['userid']) || $_SESSION['role'] !== 'patient') {
-    echo "<script>
-            alert('You must be logged in as a patient to book an appointment.');
-            window.location.href = 'index.php?page=signin';
-          </script>";
+    echo json_encode(['success' => false, 'message' => 'You must be logged in as a patient to book an appointment.']);
     exit();
 }
 
-// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doctorOffice = $_POST['doctor_office'];
     $timeSlot = $_POST['time_slot'];
     $statuss = 'pending';
-    $fullName = $_POST['full_name'];
-    $phone = $_POST['phone'];
-    $email = isset($_POST['email']) ? $_POST['email'] : null;
-    $patientId = $_SESSION['userid']; // Get the logged-in patient's ID
+    $patientId = $_SESSION['userid'];
 
     date_default_timezone_set('Asia/Ho_Chi_Minh');
-    $time_right_now = date('Y-m-d H:i:s'); // Get current date and time
+    $time_right_now = date('Y-m-d H:i:s');
 
     $host = "localhost";
     $username = "root";
@@ -31,21 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $conn = new mysqli($host, $username, $password, $dbname);
         if ($conn->connect_error) {
-            die("Database connection failed: " . $conn->connect_error);
+            throw new Exception("Database connection failed: " . $conn->connect_error);
         }
 
-        // Insert appointment into the database
         $stmt = $conn->prepare("INSERT INTO appointments (patient_id, doctor_office_id, time_slot_id, status, created_at) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("iiiss", $patientId, $doctorOffice, $timeSlot, $statuss, $time_right_now);
+
         if ($stmt->execute()) {
-            // Redirect with success message
-            header("Location: http://localhost/web-programming-assignment/index.php?page=guest&isSignedIn=true&user=guest&message=Appointment+Booked");
+            echo json_encode(['success' => true]);
         } else {
-            // Redirect with error message
-            header("Location: http://localhost/web-programming-assignment/index.php?page=guest&isSignedIn=true&user=guest&message=Failed+to+Book+Appointment");
+            echo json_encode(['success' => false, 'message' => 'Failed to book appointment.']);
         }
-    } catch (mysqli_sql_exception $e) {
-        echo "Error: " . $e->getMessage();
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $e->getMessage()]);
     } finally {
         $conn->close();
     }
