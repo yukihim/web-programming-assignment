@@ -61,8 +61,9 @@ class Appointment extends Model {
                 FROM appointments a
                 INNER JOIN time_slots ts ON a.time_slot_id = ts.id
                 WHERE a.doctor_office_id = ? 
-                AND DATE(ts.available_time) = CURDATE()
+                AND ts.available_time >= NOW()
             ");
+
             $stmt->execute([$this->doctorOfficeId]);
 
             // Lấy dữ liệu
