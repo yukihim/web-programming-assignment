@@ -90,31 +90,32 @@
     </style>
 </head>
 <body>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="window.location.href='index.php?page=history&isSignedIn=true&user=guest';">View History</button>
+</div>
 
-<div class="" style="min-height:calc(100vh - 20.5em);">
-    <div class="container" style="height: fit-content">
-        <h2><i class="bi bi-calendar-check custom-icon"></i>Book an Appointment</h2>
-        <form id="appointmentForm">
-            <div class="mb-4">
-                <label for="doctor_office" class="form-label">Doctor Office</label>
-                <select id="doctor_office" name="doctor_office" class="form-select" required>
-                    <option value="" disabled selected>Select a doctor office</option>
-                    <?php while ($office = $officesResult->fetch_assoc()): ?>
-                        <option value="<?php echo $office['id']; ?>"><?php echo $office['name']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
+<div class="container">
+    <h2><i class="bi bi-calendar-check custom-icon"></i>Book an Appointment</h2>
+    <form id="appointmentForm">
+        <div class="mb-4">
+            <label for="doctor_office" class="form-label">Doctor Office</label>
+            <select id="doctor_office" name="doctor_office" class="form-select" required>
+                <option value="" disabled selected>Select a doctor office</option>
+                <?php while ($office = $officesResult->fetch_assoc()): ?>
+                    <option value="<?php echo $office['id']; ?>"><?php echo $office['name']; ?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
 
-            <div class="mb-4">
-                <label for="available_time" class="form-label">Available Time Slot</label>
-                <select id="available_time" name="time_slot" class="form-select" required>
-                    <option value="" disabled selected>Select a time slot</option>
-                </select>
-            </div>
+        <div class="mb-4">
+            <label for="available_time" class="form-label">Available Time Slot</label>
+            <select id="available_time" name="time_slot" class="form-select" required>
+                <option value="" disabled selected>Select a time slot</option>
+            </select>
+        </div>
 
-            <button type="submit" class="btn btn-primary w-100">Book Appointment</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-primary w-100">Book Appointment</button>
+    </form>
 </div>
 
 <!-- Success Modal -->
