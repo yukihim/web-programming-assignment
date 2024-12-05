@@ -7,8 +7,8 @@
     $message = isset($_GET['message']) ? $_GET['message'] : null;
 ?>
 
-<form action="components/login_processing.php" method="POST" class="d-flex justify-content-center pt-5">
-    <div class="w-25 p-5 border shadow-lg" style="border-radius: 20; min-width: 400px;">
+<form action="components/login_processing.php" method="POST" style="min-height:calc(100vh - 20.5em)" class="d-flex justify-content-center pt-5">
+    <div class="w-25 p-5 border shadow-lg" style="border-radius: 20px; min-width: 400px; height: fit-content;">
         <h2>Login</h2>
         <?php if ($message): ?>
             <div class="alert alert-danger" role="alert">
