@@ -9,9 +9,9 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
     phone VARCHAR(15),
     role ENUM('admin', 'staff', 'doctor', 'patient') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS users (
 DROP TABLE IF EXISTS doctor_offices;
 CREATE TABLE IF NOT EXISTS doctor_offices (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,  -- Tên văn phòng bác sĩ
-    location VARCHAR(255) NOT NULL,  -- Địa chỉ văn phòng bác sĩ
+    name VARCHAR(70) NOT NULL,  -- Tên văn phòng bác sĩ
+    location VARCHAR(200) NOT NULL,  -- Địa chỉ văn phòng bác sĩ
     phone VARCHAR(15),  -- Số điện thoại
-    email VARCHAR(100),  -- Email
+    email VARCHAR(50),  -- Email
     doctor_id INT NOT NULL,  -- ID của bác sĩ chính - only one doctor per office
     FOREIGN KEY (doctor_id) REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP  -- Thời gian tạo
