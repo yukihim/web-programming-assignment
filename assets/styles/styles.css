@@ -153,3 +153,41 @@ button[type="submit"]:hover {
     background-color: #00408d;
     border-color: #00408d;
 }
+
+.tab-container{
+    justify-content: center;
+    transition: all;
+    width: 7em;
+}
+
+.tab-container:hover{
+    transition-duration: 500ms;
+    background-color: #89aad3;
+}
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+.nav-expand-button:hover{
+    cursor: pointer;
+    animation: bounce 1s infinite;   
+}
+
+nav{
+    transition: all 1s ease-in-out;
+    background-color: #5390d9; 
+    font-size: 1.2em;
+    transform: translateX(100%);
+}
+
+.nav-expand{
+    transform: translateX(0);
+}
