@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <!-- Patient Registration Form -->
-    <div class="card shadow-sm rounded" style="max-width: 500px; margin: 20px auto;">
+    <div class="card shadow-sm rounded" style="max-width: 500px; margin: 20px auto; margin-bottom: 20em;">
         <div class="card-body">
             <h2 class="card-title text-center">New Patient Registration</h2>
             
