@@ -14,7 +14,7 @@ if (isset($_GET['doctor_office'])) {
     // Lấy các khung giờ có sẵn cho bác sĩ đã chọn và có thời gian >= ngày hiện tại
     $query = "
         SELECT t.id, t.available_time, t.max_slots, 
-               (t.max_slots - IFNULL(COUNT(a.id), 0)) AS available_slots
+               (t.max_slots - IFNULL(COUNT(a.patient_id), 0)) AS available_slots
         FROM time_slots t
         LEFT JOIN appointments a ON t.id = a.time_slot_id AND a.status = 'confirmed'
         WHERE t.doctor_office_id = '$doctor_office_id' 
