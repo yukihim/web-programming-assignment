@@ -45,12 +45,12 @@ CREATE TABLE IF NOT EXISTS time_slots (
 -- Bảng appointments (lịch hẹn)
 DROP TABLE IF EXISTS appointments;
 CREATE TABLE IF NOT EXISTS appointments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT NOT NULL,
     doctor_office_id INT NOT NULL,
     time_slot_id INT NOT NULL,
     status ENUM('pending', 'confirmed', 'cancelled') DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (patient_id, doctor_office_id, time_slot_id),
     FOREIGN KEY (patient_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (doctor_office_id) REFERENCES doctor_offices(id) ON DELETE CASCADE,
     FOREIGN KEY (time_slot_id) REFERENCES time_slots(id) ON DELETE CASCADE
@@ -108,11 +108,7 @@ INSERT INTO appointments (patient_id, doctor_office_id, time_slot_id, status) VA
 (4, 2, 9, 'confirmed'),
 (4, 4, 11, 'confirmed'),
 (3, 4, 10, 'confirmed'),
-(3, 4, 8, 'confirmed'),
-(4, 2, 9, 'confirmed'),
 (3, 3, 10, 'cancelled'),
-(4, 4, 11, 'confirmed'),
-(3, 4, 10, 'confirmed'),
 (8, 3, 8, 'confirmed'),
 (9, 3, 9, 'confirmed'),
 (10, 3, 10, 'confirmed'),
