@@ -11,7 +11,7 @@ if (!isset($_SESSION['userid']) || $_SESSION['role'] !== 'patient') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doctorOffice = $_POST['doctor_office'];
     $timeSlot = $_POST['time_slot'];
-    $statuss = 'pending';
+    $statuss = 'confirmed';
     $patientId = $_SESSION['userid'];
 
     date_default_timezone_set('Asia/Ho_Chi_Minh');

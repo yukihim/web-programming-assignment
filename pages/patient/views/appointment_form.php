@@ -135,29 +135,33 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+    document.getElementById('appointmentForm').addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent the default form submission
 
         const formData = new FormData(this);
+        const formObject = Object.fromEntries(formData.entries());
+        console.log("Data being sent to the server:", formObject);
 
         fetch('pages/patient/controllers/BookAppointment.php', {
             method: 'POST',
             body: formData,
         })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
-            } else {
-                alert('Failed to book appointment. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Something went wrong. Please try again.');
-        });
+            .then(response => response.json())
+            .then(result => {
+                console.log("Server response:", result);
+                if (result.success) {
+                    const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+                } else {
+                    alert('Failed to book appointment. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            });
     });
+
 
     document.getElementById('doctor_office').addEventListener('change', function() {
         const officeId = this.value;

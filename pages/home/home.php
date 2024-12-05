@@ -1,3 +1,5 @@
+
+
 <?php
 // Check if session is started
 if (!isset($_SESSION)) {
@@ -21,22 +23,73 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $doctor_office = mysqli_real_escape_string($mysql, $_POST['doctor_office']);
     $timeslot = mysqli_real_escape_string($mysql, $_POST['timeslot']);
 
-    // Insert patient information into the 'users' table
-    $query = "INSERT INTO users (name, email, phone, password, username, role) 
-              VALUES ('$name', '$email', '$phone', '$password', '$username', 'patient')";
-    mysqli_query($mysql, $query);
+    // Check if username is unique
+    $username_check_query = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($mysql, $username_check_query);
 
-    // Get patient ID
-    $patient_id = mysqli_insert_id($mysql);
+    if (mysqli_num_rows($result) > 0) {
+        // Username is already taken - Show alert
+        echo "<script>
+                alert('Username is already taken. Please choose another one.');
+                window.location.href = 'index.php?page=home&isSignedIn=false&user=guest';
+              </script>";
+        exit(); // Stop further execution
+    } else {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert appointment into the 'appointments' table with status 'confirmed'
-    $query_appointments = "INSERT INTO appointments (patient_id, doctor_office_id, time_slot_id, status) 
-                           VALUES ('$patient_id', '$doctor_office', '$timeslot', 'confirmed')";
-    mysqli_query($mysql, $query_appointments);
+        // Insert patient information into the 'users' table
+        $query = "INSERT INTO users (name, email, phone, password, username, role) 
+                  VALUES ('$name', '$email', '$phone', '$hashed_password', '$username', 'patient')";
+        if (mysqli_query($mysql, $query)) {
+            // Get patient ID
+            $patient_id = mysqli_insert_id($mysql);
 
-    $doctor_offices = mysqli_query($mysql, "SELECT * FROM doctor_offices");
+            // Insert appointment into the 'appointments' table with status 'confirmed'
+            $query_appointments = "INSERT INTO appointments (patient_id, doctor_office_id, time_slot_id, status) 
+                                   VALUES ('$patient_id', '$doctor_office', '$timeslot', 'confirmed')";
+            if (mysqli_query($mysql, $query_appointments)) {
+                // Set session variable for the user
+                $_SESSION['userid'] = $patient_id;
+                $_SESSION['appointment_success'] = true;
+                header("Location: index.php?page=home&isSignedIn=true&user=guest");
+
+                // Redirect and show success message
+                echo "<script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                            successModal.show();
+                        });
+                    </script>";
+            } else {
+                echo "<script>
+                        alert('Failed to create appointment.');
+                        window.location.href = 'index.php?page=home&isSignedIn=false&user=guest';
+                      </script>";
+            }
+        } else {
+            echo "<script>
+                    alert('Failed to register. Please try again.');
+                    window.location.href = 'index.php?page=home&isSignedIn=false&user=guest';
+                  </script>";
+        }
+        exit(); // Stop further execution
+    }
 }
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Appointment System</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
 
 <div class="container-fluid mt-5">
     <div class="row justify-content-start">
@@ -74,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Patient Registration Form -->
     <div class="card shadow-sm rounded" style="max-width: 500px; margin: 20px auto;">
         <div class="card-body">
-            <h2 class="card-title text-center">Patient Registration</h2>
+            <h2 class="card-title text-center">New Patient Registration</h2>
             
             <!-- Registration Form -->
             <form action="index.php?page=home&isSignedIn=true&user=guest" method="POST">
@@ -124,3 +177,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Appointment Booked Successfully. Please check your email for details.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="reloadPage()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+    // Check if the appointment was successfully booked (based on PHP session or GET variable)
+            if (<?php echo isset($_SESSION['appointment_success']) && $_SESSION['appointment_success'] ? 'true' : 'false'; ?>) {
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+
+                // Clear the success flag after showing the modal to prevent it from showing on page reload
+                <?php unset($_SESSION['appointment_success']); ?>
+            }
+        });
+
+    </script>
+</body>
+</html>
