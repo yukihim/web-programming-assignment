@@ -19,7 +19,7 @@ if (isset($_GET['doctor_office'])) {
         LEFT JOIN appointments a ON t.id = a.time_slot_id AND a.status = 'confirmed'
         WHERE t.doctor_office_id = '$doctor_office_id' 
           AND t.can_book = TRUE 
-          AND t.available_time >= CURDATE()  -- Điều kiện này đảm bảo khung giờ >= ngày hiện tại
+          AND t.available_time >= NOW()  -- is set >= now
         GROUP BY t.id
     ";
 
