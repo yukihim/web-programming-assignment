@@ -16,7 +16,7 @@
 
 <header class="d-flex justify-content-between align-items-center overflow-hidden shadow-lg" style="background-color: #5390d9; color: white; top: 0; width: 100%; height: 5.5em;">
     <div class="d-flex p-3" style="width: fit-content;">
-        <h2 class="m-0">Medical Appointment App</h2>
+        <h2 class="m-0" style="color: white">Medical Appointment App</h2>
     </div>
 
     <!-- 
