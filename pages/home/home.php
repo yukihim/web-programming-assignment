@@ -52,15 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Set session variable for the user
                 $_SESSION['userid'] = $patient_id;
                 $_SESSION['appointment_success'] = true;
-                header("Location: index.php?page=home&isSignedIn=true&user=guest");
+                header("Location: index.php?page=home&isSignedIn=false&user=guest&appointment_success=true");
 
                 // Redirect and show success message
-                echo "<script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                            successModal.show();
-                        });
-                    </script>";
+                // echo "<script>
+                //         document.addEventListener('DOMContentLoaded', function () {
+                //             var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                //             successModal.show();
+                //         });
+                //     </script>";
             } else {
                 echo "<script>
                         alert('Failed to create appointment.');
@@ -173,8 +173,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Sign Up & Register</button>
             </form>
+            <p class="text-center mt-3" style="color: green; font-weight: bold;">
+                Thank you for registering with us! We will send you a confirmation soon. 
+                If you want to make more appointments, please <a href="index.php?page=signin" style="color: blue; text-decoration: underline;">sign in</a>.
+            </p>
+
         </div>
     </div>
 
@@ -202,17 +207,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // Check if the appointment was successfully booked (based on PHP session or GET variable)
-            if (<?php echo isset($_SESSION['appointment_success']) && $_SESSION['appointment_success'] ? 'true' : 'false'; ?>) {
-                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
-
-                // Clear the success flag after showing the modal to prevent it from showing on page reload
-                <?php unset($_SESSION['appointment_success']); ?>
-            }
-        });
-
-    </script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check if the appointment was successfully booked based on the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('appointment_success') === 'true') {
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+        }
+    });
+</script>
 </body>
 </html>

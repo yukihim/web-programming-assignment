@@ -24,7 +24,7 @@
         <label for="password" class="form-label">Password</label><br>
         <input type="password" class="form-control" id="password" name="password" required>
         <div class="d-flex justify-content-end">
-            <a href="index.php?page=home&isSignedIn=true&user=guest" class="text-primary" style="text-decoration: underline;">Sign in as Guest?</a><br><br>
+            <a href="index.php?page=home&isSignedIn=false" class="text-primary" style="text-decoration: underline;">Continue as a Guest?</a><br><br>
         </div>
         <button type="submit" class="btn btn-primary w-100">Sign In</button>
     </div>
