@@ -99,6 +99,10 @@ if (isset($_GET['isSignedIn']) && $_GET['isSignedIn'] == 'false') {
                         // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
                         include 'pages/patient/patient.php';                   
                         break;
+                    case 'history':
+                        // TODO: If not signed in then redirect to sign in page and send an alert "You have to log in first"
+                        include 'pages/patient/views/history.php';                   
+                        break;
                     default:
                         // Allert: "You have to log in first"
                         echo    "<script>

@@ -11,7 +11,11 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-$slotsQuery = "SELECT * FROM time_slots WHERE doctor_office_id = $officeId";
+// Get the current time
+$currentTime = date('Y-m-d H:i:s'); // Current server time in MySQL datetime format
+
+// Modify the query to only select time slots that are after the current time
+$slotsQuery = "SELECT * FROM time_slots WHERE doctor_office_id = $officeId AND available_time > '$currentTime' ORDER BY available_time ASC";
 $slotsResult = $conn->query($slotsQuery);
 
 $timeSlots = [];

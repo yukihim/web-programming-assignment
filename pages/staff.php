@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 
 <h2>Appointments</h2>
-<div class="container-fluid w-100 row g-5">
+<div class="container-fluid w-100 row g-5" style="min-height:calc(100vh - 20.5em)">
     <?php 
         // Kết nối đến cơ sở dữ liệu
         $mysql = mysqli_connect("localhost", "root", NULL, "medical_appointment", 3306, NULL);
@@ -66,8 +66,8 @@ if (session_status() === PHP_SESSION_NONE) {
                 }
 
                 // Hiển thị thông tin lịch hẹn
-                echo "<div class=\"card p-0 col-6 col-xl-3 col-lg-4\">
-                        <div class=\"card-header fs-3 fw-semibold\">
+                echo "<div class=\"card p-0 col-6 col-xl-3 col-lg-4 border-black\">
+                        <div class=\"card-header fs-3 fw-semibold\" style=\"background-color: #80FFDB; border-top-left-radius: 15px; border-top-right-radius: 15px;\">
                             $appointment[0]
                         </div>
                         <div class=\"card-body\">
@@ -85,7 +85,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 $appointment[5]
                             </strong>
                         </div>
-                        <div class=\"card-footer\">
+                        <div class=\"card-footer\" style=\"background-color: #5E60CE; color: white; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;\">
                             Appointment was made $display_when
                         </div>
                     </div>";

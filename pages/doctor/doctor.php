@@ -6,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
+<div style="min-height: calc(100vh - 20.5em)">
 <h1 class="text-center">Doctor Page</h1>
 
 <!-- Main Content -->
@@ -108,5 +109,6 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </div>
 
+</div>
 
 <script src="assets/js/doctor.js"></script>

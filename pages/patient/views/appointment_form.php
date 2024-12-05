@@ -90,6 +90,9 @@
     </style>
 </head>
 <body>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="window.location.href='index.php?page=history&isSignedIn=true&user=guest';">View History</button>
+</div>
 
 <div class="container">
     <h2><i class="bi bi-calendar-check custom-icon"></i>Book an Appointment</h2>
