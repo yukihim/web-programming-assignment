@@ -1,4 +1,4 @@
-<footer class="d-flex justify-content-between px-5 py-4" style="position:fixed; bottom:0; width:100%; background-color:#5390d9; color: white;">
+<footer class="d-flex justify-content-between px-5 py-4" style="width:100%; background-color:#5390d9; color: white;">
     <div class="row-gap-1 d-flex flex-column">
         <p class="w-100 border-bottom pb-3 m-0 fs-4">&copy; Medical Appointment App</p>
         <div class="d-flex flex-column border-bottom">
