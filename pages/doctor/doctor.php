@@ -108,4 +108,5 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </div>
 
-    <script src="assets/js/scripts.js"></script>
+
+<script src="assets/js/doctor.js"></script>
