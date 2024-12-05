@@ -67,6 +67,7 @@ function loginUser($user) {
     $_SESSION['isSignedIn'] = true;
     $_SESSION['user'] = $user['role'];
     $_SESSION['user_id'] = $user['id'];
+    $_SESSION['patient_id'] = $user['id'];
 
     if ($user['role'] === 'doctor') {
         // Fetch doctor's office info
