@@ -25,7 +25,7 @@ class DoctorOffice extends Model {
                     ts.id AS session_id,                 -- Unique ID of the session
                     ts.available_time,                  -- Session start time
                     ts.max_slots,                       -- Maximum number of slots for the session
-                    COUNT(a.id) AS booked_slots         -- Number of booked slots for the session
+                    COUNT(a.patient_id) AS booked_slots         -- Number of booked slots for the session
                 FROM 
                     time_slots ts
                 LEFT JOIN 
