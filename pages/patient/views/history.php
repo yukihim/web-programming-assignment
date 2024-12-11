@@ -9,7 +9,7 @@ $db = mysqli_connect("localhost", "root", NULL, "medical_appointment", 3306, NUL
 // Assuming patient is logged in, and their user ID is stored in session
 $patientId = $_SESSION['user_id']; // Get logged-in patient ID
 
-$query = "SELECT a.id, a.status, a.time_slot_id, ts.available_time, u.name AS doctor_name, a.created_at, do.name AS doctor_office_name
+$query = "SELECT a.patient_id, a.status, a.time_slot_id, ts.available_time, u.name AS doctor_name, a.created_at, do.name AS doctor_office_name
           FROM appointments a
           JOIN time_slots ts ON a.time_slot_id = ts.id
           JOIN doctor_offices do ON a.doctor_office_id = do.id

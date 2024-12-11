@@ -14,7 +14,7 @@
             <div class="alert alert-danger" role="alert">
                 <?php 
                     if ($message == "wrong_username_or_password") {
-                        echo "Wrong username or password!";
+                        echo "You have entered wrong Username or Password!";
                     }
                 ?>
             </div>
